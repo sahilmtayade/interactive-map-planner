@@ -2,7 +2,7 @@ import csv
 import html
 
 
-def create_kml(csv_file, country="Singapore", output_file=None):
+def create_kml(csv_file: str, country: str = "Singapore", output_file: str | None = None) -> None:
     """
     Generates a KML file that can be imported into Google My Maps.
     """
@@ -12,7 +12,7 @@ def create_kml(csv_file, country="Singapore", output_file=None):
         output_file = str(Path("output") / f"{country}_Trip_Mobile.kml")
 
     # KML Header
-    kml_content = [
+    kml_content: list[str] = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<kml xmlns="http://www.opengis.net/kml/2.2">',
         "<Document>",
@@ -21,7 +21,7 @@ def create_kml(csv_file, country="Singapore", output_file=None):
     ]
 
     # Define Styles for Pins (Colors based on Category)
-    styles = {
+    styles: dict[str, str] = {
         "Food": "ff5252ff",  # Red
         "Sweet Tooth": "ff99ccff",  # Pink
         "Bar": "ff000099",  # Dark Red
@@ -47,6 +47,9 @@ def create_kml(csv_file, country="Singapore", output_file=None):
     try:
         with open(csv_file, encoding="utf-8") as f:
             reader = csv.DictReader(f)
+            if reader is None:
+                print(f"Failed to read CSV file '{csv_file}'.")
+                return
             for row in reader:
                 name = html.escape(row["Name"])
                 desc = html.escape(row["Notes"])
