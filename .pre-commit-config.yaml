@@ -1,7 +1,7 @@
 repos:
   - repo: local
     hooks:
-      # 1. Ruff Linter (Fixes imports, unused vars, logic issues)
+      # 1. Ruff Linter
       - id: ruff-check
         name: Ruff Fix
         entry: uv run ruff check --fix
@@ -9,7 +9,7 @@ repos:
         types: [python]
         require_serial: true
 
-      # 2. Ruff Formatter (Standardizes code style)
+      # 2. Ruff Formatter
       - id: ruff-format
         name: Ruff Format
         entry: uv run ruff format
@@ -17,13 +17,11 @@ repos:
         types: [python]
         require_serial: true
 
-      # 3. MyPy Daemon (Fast Type Checking)
-      # Uses 'dmypy' (daemon) instead of 'mypy' to keep analysis in memory.
-      - id: mypy
-        name: MyPy (Daemon)
-        entry: uv run dmypy run -- app
+      # 3. Ty Type Checker
+      # 'ty' scans the whole project (auto-discovering pyproject.toml)
+      - id: ty
+        name: Ty Check
+        entry: uv run ty check
         language: system
         types: [python]
-        # Crucial for speed and accuracy:
-        # 1. Prevents pre-commit from passing specific file paths (which breaks cache reuse).
         pass_filenames: false

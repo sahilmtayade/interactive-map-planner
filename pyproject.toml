@@ -19,7 +19,8 @@ dev = [
     "pytest-cov",
     "pre-commit",
     # djlint is often used for HTML templates; you can remove it if you only write pure Python Streamlit
-    "djlint>=1.36.4" 
+    "djlint>=1.36.4",
+    "ty>=0.0.1a29",
 ]
 
 # --- Tooling Configuration ---
@@ -60,30 +61,9 @@ convention = "google"
 "__init__.py" = ["F401"]     # Allow unused imports in __init__
 "migrations/*" = ["E501"]    # Allow long lines in migrations
 
-[tool.mypy]
-# Strict type checking options
-warn_unused_ignores = true
-warn_redundant_casts = true
-warn_unused_configs = true
-disallow_untyped_defs = true
-no_implicit_optional = true
-strict_optional = true
-explicit_package_bases = true
-exclude = ["tests/", ".venv/"]
-
-# --- Speed Optimizations ---
-incremental = true
-cache_dir = ".mypy_cache"
-sqlite_cache = true        # Faster cache checking
-show_traceback = true      # Helpful for debugging crashes
-
-# Do not use with dmypy, causes module path conflicts
-# mypy_path = "app"
-plugins = []
-
-[[tool.mypy.overrides]]
-module = "tests.*"
-disallow_untyped_defs = false
+[tool.ty]
+# Ty is zero-config by default and auto-detects your environment/python version.
+# You can add specific rule exclusions here in the future.
 
 [tool.pytest.ini_options]
 addopts = "-q"
