@@ -65,6 +65,12 @@ convention = "google"
 # Ty is zero-config by default and auto-detects your environment/python version.
 # You can add specific rule exclusions here in the future.
 
+# Relax rules for test files
+[[tool.ty.overrides]]
+include = ["tests/**", "**/test_*.py"]
+[tool.ty.overrides.rules]
+possibly-unresolved-reference = "warn"
+
 [tool.pytest.ini_options]
 addopts = "-q"
 testpaths = ["tests"]
