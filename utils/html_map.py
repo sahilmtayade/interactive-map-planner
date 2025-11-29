@@ -436,16 +436,18 @@ def generate_html_map(csv_file, country="Singapore", output_file=None):
         }
         .zone-title {
             padding: 10px;
-            background-color: #f8f9fa;
             cursor: pointer;
             font-weight: 600;
             font-size: 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            color: white;
+            transition: all 0.3s ease;
         }
         .zone-title:hover {
-            background-color: #e9ecef;
+            transform: translateX(2px);
+            box-shadow: inset 0 -2px 4px rgba(0,0,0,0.1);
         }
         .location-list {
             display: none;
@@ -481,9 +483,9 @@ def generate_html_map(csv_file, country="Singapore", output_file=None):
         <div class="sidebar-header">🌍 Trip Planner</div>
         
         {% for zone in this.zones %}
-        <div class="zone-container">
-            <div class="zone-title" onclick="flyToLoc({{ zone.center[0] }}, {{ zone.center[1] }}, {{ zone.zoom }}, '{{ zone.id }}')">
-                <span><span class="zone-dot" style="background-color: {{ zone.color }}"></span>{{ zone.name }} ({{ zone.locations|length }})</span>
+        <div class="zone-container" style="border-left: 4px solid {{ zone.color }};">
+            <div class="zone-title" style="background: linear-gradient(90deg, {{ zone.color }}dd, {{ zone.color }}99);" onclick="flyToLoc({{ zone.center[0] }}, {{ zone.center[1] }}, {{ zone.zoom }}, '{{ zone.id }}')">
+                <span><span class="zone-dot" style="background-color: white;"></span>{{ zone.name }} ({{ zone.locations|length }})</span>
                 <span style="font-size:10px;">▼</span>
             </div>
             
