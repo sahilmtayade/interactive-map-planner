@@ -8,7 +8,7 @@ A full-stack data application designed to simplify group travel planning. It rep
 - **Live Data Editing:** Edit notes, categories, and itineraries in an Excel-like interface (Pandas + Streamlit).
 - **Smart Search:** Integrated Nominatim (OSM) API to find and pinpoint locations without Google API keys.
 - **Mobile Sync:** Auto-generates KML files to sync itineraries with Google Maps Mobile.
-- **Strict Engineering:** Built with 100% type safety (`mypy`) and PEP-8 compliance (`ruff`).
+- **Strict Engineering:** Built with 100% type safety (`ty`) and PEP-8 compliance (`ruff`).
 
 ## 🛠️ Tech Stack
 
@@ -16,7 +16,7 @@ A full-stack data application designed to simplify group travel planning. It rep
 - **Framework:** Streamlit
 - **Geospatial:** Folium, Geopy, OpenStreetMap
 - **Data:** Pandas
-- **Tooling:** `uv` (Package Management), `ruff` (Linting), `mypy` (Typing)
+- **Tooling:** `uv` (Package Management), `ruff` (Linting), `ty` (Typing)
 
 ## 📦 How to Run
 
@@ -44,7 +44,7 @@ uv run pre-commit install
 
 ```bash
 # Type Checking
-uv run mypy .
+uv run ty check
 
 # Linting
 uv run ruff check .
