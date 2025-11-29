@@ -1,0 +1,27 @@
+repos:
+  - repo: local
+    hooks:
+      # 1. Ruff Linter
+      - id: ruff-check
+        name: Ruff Fix
+        entry: uv run ruff check --fix
+        language: system
+        types: [python]
+        require_serial: true
+
+      # 2. Ruff Formatter
+      - id: ruff-format
+        name: Ruff Format
+        entry: uv run ruff format
+        language: system
+        types: [python]
+        require_serial: true
+
+      # 3. Ty Type Checker
+      # 'ty' scans the whole project (auto-discovering pyproject.toml)
+      - id: ty
+        name: Ty Check
+        entry: uv run ty check
+        language: system
+        types: [python]
+        pass_filenames: false

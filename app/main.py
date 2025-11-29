@@ -1,25 +1,32 @@
+from dataclasses import dataclass
 from pathlib import Path
 
-from utils import create_kml, generate_html_map
+from app.utils import create_kml, generate_html_map
 
 
-def find_countries():
+@dataclass
+class Country:
+    name: str
+    path: Path
+
+
+def find_countries() -> dict[str, Country]:
     """Discover countries by looking for folders with a 'data' subfolder."""
-    countries = {}
+    countries: dict[str, Country] = {}
     current_dir = Path.cwd()
 
     for item in sorted(current_dir.iterdir()):
         if item.is_dir() and (item / "data").exists():
             country_name = item.name.capitalize()
-            countries[str(len(countries) + 1)] = {
-                "name": country_name,
-                "path": item,
-            }
+            countries[str(len(countries) + 1)] = Country(
+                name=country_name,
+                path=item,
+            )
 
     return countries
 
 
-def get_country_choice():
+def get_country_choice() -> Country | None:
     """Prompt user to select a country."""
     countries = find_countries()
 
@@ -33,24 +40,24 @@ def get_country_choice():
     print("\n--- Trip Builder ---")
     print("\nSelect a country:")
     for key, country in countries.items():
-        print(f"{key}. {country['name']}")
+        print(f"{key}. {country.name}")
 
     choice = input(f"\nEnter your choice (1-{len(countries)}): ").strip()
 
     if choice in countries:
-        return countries[choice]["name"], countries[choice]["path"]
+        return countries[choice]
     else:
         print("Invalid choice. Defaulting to the first option.")
         first_country = countries["1"]
-        return first_country["name"], first_country["path"]
+        return first_country
 
 
-def main():
+def main() -> None:
     result = get_country_choice()
     if not result:
         return
 
-    country_name, country_path = result
+    country_name, country_path = result.name, result.path
 
     # Find the CSV file in the data subfolder
     data_folder = country_path / "data"
