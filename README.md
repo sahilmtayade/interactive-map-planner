@@ -36,7 +36,11 @@ This project uses **uv** for blazing fast dependency management.
 
 ## 🧪 Development
 
-To ensure code quality, run the static analysis tools:
+To ensure code quality, use pre-commit or run the static analysis tools:
+
+```bash
+uv run pre-commit install
+```
 
 ```bash
 # Type Checking

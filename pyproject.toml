@@ -71,8 +71,14 @@ strict_optional = true
 explicit_package_bases = true
 exclude = ["tests/", ".venv/"]
 
-# Points to your 'app' folder for type checking
-mypy_path = "app"
+# --- Speed Optimizations ---
+incremental = true
+cache_dir = ".mypy_cache"
+sqlite_cache = true        # Faster cache checking
+show_traceback = true      # Helpful for debugging crashes
+
+# Do not use with dmypy, causes module path conflicts
+# mypy_path = "app"
 plugins = []
 
 [[tool.mypy.overrides]]
