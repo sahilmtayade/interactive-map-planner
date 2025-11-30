@@ -1,6 +1,5 @@
 import csv
 from dataclasses import dataclass, field
-from typing import Any
 
 import folium
 from folium import MacroElement

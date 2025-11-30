@@ -1,0 +1,5 @@
+# ty.toml at the project root
+
+[environment]
+# Tells ty to look inside the 'backend' folder to resolve imports like 'app.utils'
+extra-paths = ["backend"]

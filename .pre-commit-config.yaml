@@ -4,24 +4,28 @@ repos:
       # 1. Ruff Linter
       - id: ruff-check
         name: Ruff Fix
-        entry: uv run ruff check --fix
+        # Change dir to backend, run check on current dir (.)
+        entry: uv --directory backend run ruff check --fix .
         language: system
+        # Trigger only on python files inside backend/
+        files: ^backend/
         types: [python]
-        require_serial: true
+        # Important: Stop passing mismatched paths
+        pass_filenames: false
 
       # 2. Ruff Formatter
       - id: ruff-format
         name: Ruff Format
-        entry: uv run ruff format
+        entry: uv --directory backend run ruff format .
         language: system
+        files: ^backend/
         types: [python]
-        require_serial: true
+        pass_filenames: false
 
       # 3. Ty Type Checker
-      # 'ty' scans the whole project (auto-discovering pyproject.toml)
-      - id: ty
-        name: Ty Check
-        entry: uv run ty check
+      - id: backend-ty
+        name: Type Check (Backend)
+        entry: uv --directory backend run ty check
         language: system
-        types: [python]
+        files: ^backend/
         pass_filenames: false

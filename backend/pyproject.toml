@@ -9,6 +9,11 @@ dependencies = [
     "streamlit>=1.32.0",      # Added for your Streamlit app
     "pandas==2.2.3",          # Kept from template (useful for map data)
     "python-dotenv==1.1.1",   # Kept from template (useful for env vars)
+    "fastapi>=0.123.0",
+    "uvicorn>=0.38.0",
+    "sqlmodel>=0.0.27",
+    "geopy>=2.4.1",
+    "pydantic-settings>=2.12.0",
 ]
 
 [dependency-groups]
@@ -49,7 +54,7 @@ unfixable = ["F401"]
 
 [tool.ruff.lint.isort]
 # Ruff handles import sorting automatically
-
+known-first-party = ["app"] 
 [tool.ruff.format]
 # Default formatting options
 
@@ -64,6 +69,7 @@ convention = "google"
 [tool.ty]
 # Ty is zero-config by default and auto-detects your environment/python version.
 # You can add specific rule exclusions here in the future.
+[tool.ty.environment]
 
 # Relax rules for test files
 [[tool.ty.overrides]]
