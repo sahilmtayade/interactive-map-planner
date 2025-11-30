@@ -1,0 +1,125 @@
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 350px;
+    background: #f8f9fa;
+    border-right: 1px solid #ddd;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    /* Above map */
+}
+
+.control-group {
+    margin-bottom: 20px;
+}
+
+.control-group select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.add-box input,
+.add-box select,
+.add-box button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.add-box button {
+    background: #228be6;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.add-box button:hover {
+    background: #1c7ed6;
+}
+
+.add-box button:disabled {
+    background: #a5d8ff;
+}
+
+/* List Styles */
+.list-container {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.list-container ul {
+    list-style: none;
+}
+
+.place-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.place-item:hover {
+    background: #f1f3f5;
+}
+
+/* Color Tags */
+.tag {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.tag.food {
+    background: #fa5252;
+}
+
+.tag.nature {
+    background: #40c057;
+}
+
+.tag.bar {
+    background: #7950f2;
+}
+
+.tag.culture {
+    background: #fab005;
+}
+
+/* Map Wrapper */
+.map-wrapper {
+    flex: 1;
+    position: relative;
+}
